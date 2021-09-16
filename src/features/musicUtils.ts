@@ -18,6 +18,7 @@ export function addNotesRelative(note: RelativeNote, amount: number): RelativeNo
 }
 
 
+
 export function getNotesInterval(note: Note, amount: number): Note[] {
     const notes: Note[] = [note]
     for (let i = 0; i < amount; i++) {

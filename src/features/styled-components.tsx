@@ -62,3 +62,17 @@ export const StyledNote = styled.div<{ visible: boolean, active: boolean, bgc: s
   ${overlayOnHover()}
 
 `
+
+export const slideInRight = (duration:number) => {
+    return css`
+      @keyframes slideInFromLeft {
+        0% {
+          transform: translatex(0);
+        }
+        100% {
+          transform: translatex(100%);
+        }
+      }
+      animation: 0.1s ease-out ${duration+"s 1 slideInFromLeft"};
+    `
+}

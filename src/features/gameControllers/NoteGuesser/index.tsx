@@ -1,6 +1,6 @@
 import * as S from "./NoteGuesser.styled"
 import FretBoard, {NoteWithString} from "../../instruments/Fretboard";
-import {guitar, Note} from "../../../models/music";
+import {standardGuitar, Note} from "../../../models/music";
 import React, {useEffect, useState} from "react";
 import {isEqual} from "lodash";
 import {addNotesRelative, getNotesInterval, getRandomNoteFromStringInstrument} from "../../musicUtils";
@@ -11,14 +11,17 @@ interface NoteGuesserProps {
 }
 
 const NoteGuesser = ({}: NoteGuesserProps) => {
-    const [activeNote, setActiveNote] = useState<NoteWithString>(getRandomNoteFromStringInstrument(guitar,6))
+    const [activeNote, setActiveNote] = useState<NoteWithString>(getRandomNoteFromStringInstrument(standardGuitar,6))
     const [visibleNotes, setVisibleNotes] = useState<NoteWithString[]>([])
+    const [comboMeter, setComboMeter] = useState(true);
+    const [showAll, setShowAll] = useState(false);
+
     const [hit, setHit] = useState(0)
     const [missed, setMissed] = useState(0)
     useEffect(randomActiveNote,[])
 
     function randomActiveNote() {
-        const rn = getRandomNoteFromStringInstrument(guitar, 6);
+        const rn = getRandomNoteFromStringInstrument(standardGuitar, 6);
         setActiveNote(rn);
     }
 
@@ -33,6 +36,7 @@ const NoteGuesser = ({}: NoteGuesserProps) => {
         if (activeNote.note.note === note){
             randomActiveNote();
             setHit(hit+1)
+            setComboMeter(true);
         }
         else
             setMissed(missed+1)
@@ -40,9 +44,12 @@ const NoteGuesser = ({}: NoteGuesserProps) => {
 
     return (
         <S.Wrapper>
-
+            <S.LoadingWrapper>
+                <S.ComboMeter/>
+            </S.LoadingWrapper>
+            <button onClick={()=>{setShowAll(!showAll)}}>showall</button>
             <S.FretBoardWrapper>
-                <FretBoard instrument={guitar} activeNote={activeNote} visibleNotes={visibleNotes} showAll={false}
+                <FretBoard instrument={standardGuitar} activeNote={activeNote} visibleNotes={visibleNotes} showAll={showAll}
                            onChange={handleNoteClick}/>
             </S.FretBoardWrapper>
 

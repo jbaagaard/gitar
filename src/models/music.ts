@@ -42,6 +42,27 @@ export type Note =
     "G" |
     "G#"
 
+export enum intervalEnum {
+    "Perfect unison",
+    "Minor second",
+    "Major second",
+    "Minor third",
+    "Major third",
+    "Perfect fourth",
+    "Tritone",
+    "Perfect fifth",
+    "Minor sixth",
+    "Major sixth",
+    "Minor seventh",
+    "Major seventh",
+    "Perfect octave"
+}
+
+export interface Chord {
+    name:string,
+    intervals:number[]
+}
+
 export interface RelativeNote {
     note:Note
     octave:number
@@ -53,8 +74,8 @@ export interface StringInstrument {
     fretLength: number
 }
 
-export const guitar: StringInstrument = {
-    name:"guitar",
+export const standardGuitar: StringInstrument = {
+    name:"guitar(E,A,D,G,B,E)",
     strings: [
         {note:"E",octave:4},
         {note:"B",octave:3},
@@ -67,7 +88,7 @@ export const guitar: StringInstrument = {
 }
 
 export const ukulele: StringInstrument = {
-    name:"ukulele",
+    name:"ukulele(tenor)",
     strings: [
         {note:"G",octave:4},
         {note:"C",octave:4},
@@ -76,3 +97,8 @@ export const ukulele: StringInstrument = {
     ],
     fretLength: 17
 }
+
+export const StringInstrumentArray:StringInstrument[] = [
+    standardGuitar,
+    ukulele
+]

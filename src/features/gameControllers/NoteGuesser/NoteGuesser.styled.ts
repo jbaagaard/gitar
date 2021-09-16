@@ -1,11 +1,27 @@
 import styled from "styled-components";
+import {overlayOnHover, slideInRight} from "../../styled-components";
 
 export const Wrapper = styled.div`
-  padding-top: 32px;
 `
 export const FretBoardWrapper = styled.div`
   margin: 0 auto;
   width: fit-content;
+  margin-top: 32px;
+  
+`
+
+export const LoadingWrapper = styled.div`
+ width: 100%;
+  height: 40px;
+`
+
+export const ComboMeter = styled.div`
+  width: 100%;
+  height: 40px;
+  background-color: limegreen;
+  ${slideInRight(10)}
+  
+  
 `
 
 export const NoteButtonWrapper = styled.div`

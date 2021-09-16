@@ -3,7 +3,7 @@ import {overlayOnHover, StyledNote} from "../../../styled-components";
 
 export const Wrapper = styled.div<{ firstNode: boolean }>`
   height: 50px;
-  width: 80px;
+  width: 100px;
   position: relative;
   border-right: ${props => props.firstNode ? "4px #2b2b31" : "2px darkgray"} solid;
   display: grid;
